@@ -1,0 +1,66 @@
+Cette page admin représente en fait une page de gestion d'un client qui se sera préalablement inscrit.
+Il faut rajouter des trucs.
+
+pour son dashboard on doit avoir :
+1. Sa liste de comptes, à savoir qu'on ne peut pas avoir plus de 2 comptes.
+	On a 2 types de comptes :
+		- OFFSHORE,
+		- OFFSHORE +.
+
+	Chaque compte a :
+		- donc son type,
+		- un numéro IBAN,
+		- un solde,
+		- un statut (bloqué ou actif).
+
+2. Ses cartes :
+	chaque client a 2 types de cartes : 
+		- VISA,
+		- MASTERCARD.
+
+	Pour chaque carte, on a :
+		- donc son type (visa ou mastercard),
+		- son titulaire (soit une personne (M., ou Mme, suivi de nom et prénom), soit un nom d'entreprise),
+		- son numéro (4 * 4 chiffres),
+		- sa date d'expiration.
+
+3. Ses bénéficiaires
+	Chaque bénéficiaire a :
+		- soit M. ou Mme suivi de nom et prénom, soit un nom d'entreprise,
+		- son numéro IBAN.
+
+4. Ses virements
+	Le client peut faire des virements. Chaque virement est constitué :
+		- du montant,
+		- du numéro de compte source,
+		- du bénéficiaire cible,
+		- d'un motif écrit.
+
+5. Ses transactions
+	Ils consistent en un historique des virements ayant changé le solde des comptes de l'utilisateur. Chaque transaction a :
+		- une date,
+		- un intitulé,
+		- un type,
+		- un montant.
+
+6. Ses relevés de comptes
+	téléchargeables au format pdf.
+
+7. Son code de sécurité pour effectuer des virements, de 4 chiffres ou plus. Avant d'exécuter un virement, l'utilisateur doit saisir son code de sécurité.
+
+8. Ses notifications
+	Pour chaque notification, on a :
+		- Sa date,
+		- son titre,
+		- son objet,
+		- son message.
+
+9. Son profil
+	contenant :
+		- l'abréviation M. ou Mme selon le sexe de l'utilisateur, suivi du nom et du prénom,
+		- son e-mail.
+
+Maintenant que tu as ces informations, tu peux, et je t'y encourage, changer la structure des tables. Demande-moi des précisions supplémentaires si nécessaires. Je voudrais déjà que tu me montres un UML puis les tables correspondantes pour tout ça.
+
+le client devra avoir le CRUD de tout ça, et pourra faire des transactions. On suppose que la monnaie est uniquement le $USD. L'admin uniquement peut bloquer ou activer un compte, et attribuer codes de virement, identifiant et code secret pour la connexion de l'utilisateur. Ces deux derniers codes sont à lier avec le login dorénavant.
+
