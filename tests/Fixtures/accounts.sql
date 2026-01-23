@@ -1,0 +1,3 @@
+INSERT INTO accounts (id, user_id, num_compte, type, iban, solde, status) VALUES
+(1, 1, '00000000001', 'OFFSHORE', 'LU89 0061 1014 0372 1090', 1250.50, 'ACTIVE'),
+(2, 1, '00000000002', 'OFFSHORE_PLUS', 'LU89 0061 1014 0372 1092', 980.00, 'ACTIVE');
