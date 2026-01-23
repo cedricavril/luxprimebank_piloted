@@ -37,16 +37,17 @@ class DashboardController extends Controller
             foreach ($operations as $operation) {
                 $amount = $operation['amount'];
 
+                if (!$account->applyOperation($amount)) {
+                    $errorMessage = 'Error: Negative balance detected';
+                    break;
+                }
+
                 if ($amount >= 0) {
                     $totalPositive += $amount;
                 } else {
                     $totalNegative += abs($amount);
                 }
 
-                if (!$account->applyOperation($amount)) {
-                    $errorMessage = 'Error: Negative balance detected';
-                    break;
-                }
             }
 
             $dashboardData[] = [

@@ -57,8 +57,11 @@ class Account
         } else {
             $this->iban = 'LU89 0061 1014 0372 1092';
         }
-        $this->solde      = $solde;
-        $this->status     = $status;
+        if ($solde < 0) {
+            throw new InvalidArgumentException('Initial balance cannot be negative');
+        }
+        $this->solde    = $solde;
+        $this->status   = $status;
     }
 
     // =========================
