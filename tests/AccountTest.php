@@ -116,4 +116,17 @@ class AccountTest extends TestCase
         $account->setStatus('BLOCKED', 'USER');
     }
 
+    public function testInitialNegativeBalanceThrowsException(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        new Account(
+            id_compte: 1,
+            num_compte: '00000000001',
+            type: 'OFFSHORE',
+            iban: 'LU89 0061 1014 0372 1090',
+            solde: -100.00,
+            status: 'ACTIVE'
+        );
+    }
 }
