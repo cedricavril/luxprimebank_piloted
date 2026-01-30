@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../Repositories/AccountRepository.php';
 
 class User
 {
@@ -51,7 +52,9 @@ class User
      */
     public function getAccounts(): array
     {
-        return $this->accounts;
+        $repository = new AccountRepository();
+
+        return $repository->findByUserId($this->id_user);
     }
 
 

@@ -37,7 +37,6 @@ class DashboardTest extends TestCase
     public function testDashboardLoads()
     {
         $_SERVER['REQUEST_URI'] = '/dashboard';
-
         $output = capture_output(function () {
             require __DIR__ . '/bootstrap_dashboard.php';
         });
@@ -48,7 +47,6 @@ class DashboardTest extends TestCase
     public function testDashboardHasHtmlStructure()
     {
         $_SERVER['REQUEST_URI'] = '/dashboard';
-
         $output = capture_output(function () {
             require __DIR__ . '/bootstrap_dashboard.php';
         });
@@ -61,7 +59,6 @@ class DashboardTest extends TestCase
     public function testDashboardDisplaysBalance()
     {
         $_SERVER['REQUEST_URI'] = '/dashboard';
-
         $output = capture_output(function () {
             require __DIR__ . '/bootstrap_dashboard.php';
         });
@@ -73,7 +70,6 @@ class DashboardTest extends TestCase
     public function testDashboardShowsOperationHistory()
     {
         $_SERVER['REQUEST_URI'] = '/dashboard';
-
         $output = capture_output(function () {
             require __DIR__ . '/bootstrap_dashboard.php';
         });
@@ -86,7 +82,6 @@ class DashboardTest extends TestCase
     public function testDashboardDisplaysPositiveAndNegativeTotals()
     {
         $_SERVER['REQUEST_URI'] = '/dashboard';
-
         $output = capture_output(function () {
             require __DIR__ . '/bootstrap_dashboard.php';
         });
@@ -98,7 +93,6 @@ class DashboardTest extends TestCase
     {
         $_SERVER['REQUEST_URI'] = '/dashboard?corrupted=1';
         $_GET['corrupted'] = '1';
-
         $output = capture_output(function () {
             require __DIR__ . '/bootstrap_dashboard.php';
         });
@@ -109,7 +103,6 @@ class DashboardTest extends TestCase
     public function testDashboardDisplaysTwoAccounts()
     {
         $_SERVER['REQUEST_URI'] = '/dashboard';
-
         $output = capture_output(function () {
             require __DIR__ . '/bootstrap_dashboard.php';
         });
@@ -121,7 +114,6 @@ class DashboardTest extends TestCase
     public function testDashboardDisplaysTwoBalances()
     {
         $_SERVER['REQUEST_URI'] = '/dashboard';
-
         $output = capture_output(function () {
             require __DIR__ . '/bootstrap_dashboard.php';
         });

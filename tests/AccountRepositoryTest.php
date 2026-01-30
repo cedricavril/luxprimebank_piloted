@@ -12,10 +12,7 @@ class AccountRepositoryTest extends TestCase
 {
     protected function setUp(): void
     {
-        // On force l'environnement test si besoin
-        putenv('APP_ENV=test');
-
-        $pdo = Database::getConnection();
+        $pdo = Database::getConnection('luxprime_test');
 
         // ⚡ Nettoyer la table avant chaque test
         $pdo->exec('DELETE FROM accounts');
@@ -32,7 +29,8 @@ class AccountRepositoryTest extends TestCase
 
     public function testFindByUserIdReturnsAccounts(): void
     {
-        $repo = new AccountRepository();
+       $pdo = Database::getConnection('luxprime_test');
+        $repo = new AccountRepository($pdo);
 
         $accounts = $repo->findByUserId(1);
 
