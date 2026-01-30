@@ -9,24 +9,28 @@ class AccountRepository
     {
         $pdo = Database::getConnection();
 
-        $stmt = $pdo->prepare(
-            'SELECT id, num_compte, type, iban, solde, status
-             FROM accounts
-             WHERE user_id = :user_id'
-        );
+        $stmt = $pdo->prepare("
+            SELECT id, num_compte, type, iban, solde, status
+            FROM accounts
+            WHERE user_id = :user_id
+        ");
 
-        $stmt->execute(['user_id' => $userId]);
+        $stmt->execute([
+            'user_id' => $userId
+        ]);
+
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         $accounts = [];
 
-        foreach ($stmt->fetchAll() as $row) {
+        foreach ($rows as $row) {
             $accounts[] = new Account(
-                id_compte: (int) $row['id'],
-                num_compte: $row['num_compte'],
-                type: $row['type'],
-                iban: $row['iban'],
-                solde: (float) $row['solde'],
-                status: $row['status']
+                (int) $row['id'],
+                $row['num_compte'],
+                $row['type'],
+                $row['iban'],
+                (float) $row['solde'],
+                $row['status']
             );
         }
 

@@ -10,37 +10,51 @@ require_once __DIR__ . '/../app/Repositories/AccountRepository.php';
 
 class AccountRepositoryTest extends TestCase
 {
-    protected function setUp(): void
+    protected function tearDown(): void
     {
-        $pdo = Database::getConnection('luxprime_test');
-
-        // ⚡ Nettoyer la table avant chaque test
-        $pdo->exec('DELETE FROM accounts');
-
-        // ⚡ Charger les fixtures SQL
-        $sqlFile = __DIR__ . '/Fixtures/accounts.sql';
-        if (file_exists($sqlFile)) {
-            $sql = file_get_contents($sqlFile);
-            $pdo->exec($sql);
-        } else {
-            throw new RuntimeException("Fixtures file not found: $sqlFile");
-        }
+        Database::reset();
     }
 
     public function testFindByUserIdReturnsAccounts(): void
     {
-       $pdo = Database::getConnection('luxprime_test');
-        $repo = new AccountRepository($pdo);
+        $repo = new AccountRepository();
 
         $accounts = $repo->findByUserId(1);
 
-        // ✅ On doit récupérer exactement 2 comptes selon nos fixtures
-        $this->assertCount(2, $accounts);
-
-        // ✅ Chaque objet doit être une instance de Account
+        $this->assertIsArray($accounts);
+        $this->assertNotEmpty($accounts);
         $this->assertInstanceOf(Account::class, $accounts[0]);
-        $this->assertInstanceOf(Account::class, $accounts[1]);
+    }
 
-        // ✅ Vérifier quelques valeurs métiers
-}
+    public function testReturnsTwoAccountsForUser(): void
+    {
+
+
+
+        $repo = new AccountRepository();
+        $accounts = $repo->findByUserId(1);
+
+        $this->assertCount(2, $accounts);
+    }
+
+    public function testAccountsHaveCorrectTypes(): void
+    {
+        $repo = new AccountRepository();
+        $accounts = $repo->findByUserId(1);
+
+        $types = array_map(fn($a) => $a->getType(), $accounts);
+
+        $this->assertContains('OFFSHORE', $types);
+        $this->assertContains('OFFSHORE_PLUS', $types);
+    }
+
+    public function testBalancesAreHydrated(): void
+    {
+        $repo = new AccountRepository();
+        $accounts = $repo->findByUserId(1);
+
+        foreach ($accounts as $account) {
+            $this->assertIsFloat($account->getBalance());
+        }
+    }
 }
