@@ -2,9 +2,9 @@
 
 use PHPUnit\Framework\TestCase;
 
-require_once __DIR__ . '/../app/Models/Account.php';
+/*require_once __DIR__ . '/../app/Models/Account.php';
 require_once __DIR__ . '/../app/Models/Transfer.php';
-
+*/
 class TransferTest extends TestCase
 {
     public function testSuccessfulTransfer()

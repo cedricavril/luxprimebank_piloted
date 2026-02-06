@@ -25,6 +25,12 @@ class Database
             }
         }
 
+// à commenter, puis peut être changer les putenv en 'prod' dans tests/bootstrap.php et tests/bootstrap_dashboard.php dans yagni dès que ça marche en prod.
+        if ($env == 'prod') {
+            echo "error 500 - prod mode not available yet";
+            die();
+        }
+
         return self::$pdo;
     }
 

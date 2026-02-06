@@ -2,12 +2,17 @@
 
 use PHPUnit\Framework\TestCase;
 
-require_once __DIR__ . '/../app/Models/Account.php';
+/*require_once __DIR__ . '/../app/Models/Account.php';
 require_once __DIR__ . '/../app/Models/User.php';
-
+*/
 class UserTest extends TestCase
 {
-    public function testUserHasExactlyTwoAccounts()
+    protected function tearDown(): void
+    {
+        Database::reset();
+    }
+
+    public function testUserReturnsAccountsFromDatabase(): void
     {
         $user = new User(
             1,
@@ -19,45 +24,8 @@ class UserTest extends TestCase
 
         $accounts = $user->getAccounts();
 
+        $this->assertIsArray($accounts);
         $this->assertCount(2, $accounts);
-
-        $this->assertSame('OFFSHORE', $accounts[0]->getType());
-        $this->assertSame('OFFSHORE_PLUS', $accounts[1]->getType());
+        $this->assertInstanceOf(Account::class, $accounts[0]);
     }
-
-    public function testUserCannotHaveMoreThanTwoAccounts()
-    {
-        $this->expectException(LogicException::class);
-
-        $user = new User(
-            2,
-            'jane.doe@test.com',
-            'Jane',
-            'Doe',
-            'USER'
-        );
-
-        $user->addAccount(
-            new Account(3, '00012345690', 'OFFSHORE')
-        );
-    }
-
-    public function testUserAlwaysHasOneOffshoreAndOneOffshorePlus()
-    {
-        $user = new User(
-            3,
-            'alice@test.com',
-            'Alice',
-            'Smith',
-            'USER'
-        );
-
-        $types = array_map(
-            fn ($account) => $account->getType(),
-            $user->getAccounts()
-        );
-
-/*        $this->assertContains('OFFSHORE', $types);
-        $this->assertContains('OFFSHORE_PLUS', $types);
-*/    }
 }

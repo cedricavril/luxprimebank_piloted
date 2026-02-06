@@ -4,6 +4,7 @@ class Router
 {
     public function dispatch($uri)
     {
+
         // Normalize URI (remove query string)
         $uri = parse_url($uri, PHP_URL_PATH);
 

@@ -9,6 +9,8 @@ class DashboardController extends Controller
 {
     public function index()
     {
+
+
         // Create a dummy authenticated user (temporary, no session yet)
         $user = new User(
             1,

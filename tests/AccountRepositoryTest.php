@@ -4,10 +4,10 @@ use PHPUnit\Framework\TestCase;
 // ===============================
 // ✅ Includes PHP natif
 // ===============================
-require_once __DIR__ . '/../app/Core/Database.php';
+/*require_once __DIR__ . '/../app/Core/Database.php';
 require_once __DIR__ . '/../app/Models/Account.php';
 require_once __DIR__ . '/../app/Repositories/AccountRepository.php';
-
+*/
 class AccountRepositoryTest extends TestCase
 {
     protected function tearDown(): void

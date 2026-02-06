@@ -2,8 +2,8 @@
 
 use PHPUnit\Framework\TestCase;
 
-require_once __DIR__ . '/../app/Models/Account.php';
-
+/*require_once __DIR__ . '/../app/Models/Account.php';
+*/
 class AccountTest extends TestCase
 {
     public function testNumCompteMustBeStringWith11Digits()
