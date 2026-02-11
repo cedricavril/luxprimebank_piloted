@@ -25,6 +25,18 @@ class Transfer
      */
     public function execute(): bool
     {
+
+        // Prevent transfer to the same account
+        if ($this->source->getId() === $this->target->getId()) {
+            TransferHistory::log(
+                $this->source->getId(),
+                $this->target->getId(),
+                $this->amount,
+                'REFUSED'
+            );
+            return false;
+        }
+
         // Block transfer if one of the accounts is blocked
         if ($this->source->getStatus() === 'BLOCKED' || $this->target->getStatus() === 'BLOCKED') {
 
