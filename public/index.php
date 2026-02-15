@@ -1,5 +1,31 @@
 <?php
-require __DIR__ . '/../app/Core/Router.php';
-$router = new Router();
-$router->dispatch($_SERVER['REQUEST_URI']);
 
+declare(strict_types=1);
+
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
+
+session_start();
+
+/*
+|--------------------------------------------------------------------------
+| Bootstrap global
+|--------------------------------------------------------------------------
+*/
+require_once __DIR__ . '/../bootstrap.php';
+
+/*
+|--------------------------------------------------------------------------
+| Core
+|--------------------------------------------------------------------------
+*/
+require_once __DIR__ . '/../app/Core/Router.php';
+
+/*
+|--------------------------------------------------------------------------
+| Routing
+|--------------------------------------------------------------------------
+*/
+$router = new Router();
+$router->dispatch();

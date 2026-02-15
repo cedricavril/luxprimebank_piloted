@@ -70,4 +70,41 @@ class AccountRepository
             $row['status']
         );
     }
+
+
+    public function findById(int $accountId): ?Account
+    {
+        $pdo = Database::getConnection();
+
+        $stmt = $pdo->prepare("
+            SELECT id, num_compte, type, iban, solde, status
+            FROM accounts
+            WHERE id = :id
+            LIMIT 1
+        ");
+
+        $stmt->execute([
+            'id' => $accountId
+        ]);
+
+        $row = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+        if ($row === false) {
+            return null;
+        }
+
+        return new Account(
+            (int) $row['id'],
+            $row['num_compte'],
+            $row['type'],
+            $row['iban'],
+            (float) $row['solde'],
+            $row['status']
+        );
+    }
+    
 }
+
+
+
+

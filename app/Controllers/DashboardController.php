@@ -1,11 +1,13 @@
 <?php
+/*namespace App\Controllers;*/
 
-require_once __DIR__ . '/../Core/Controller.php';
+/*require_once __DIR__ . '/../Core/Controller.php';*/
 require_once __DIR__ . '/../Models/Account.php';
 require_once __DIR__ . '/../Models/Operation.php';
 require_once __DIR__ . '/../Models/User.php';
 
-class DashboardController extends Controller
+/*class DashboardController extends Controller*/
+class DashboardController
 {
     public function index()
     {
@@ -64,4 +66,16 @@ class DashboardController extends Controller
 
         require __DIR__ . '/../Views/dashboard.php';
     }
+    public function show(): void
+    {
+if (!isset($_SESSION['user_id'])) {
+    http_response_code(403);
+    echo 'Access denied';
+    return;
+}
+        $accounts = $user->getAccounts();
+
+        require __DIR__ . '/../Views/dashboard.php';
+    }
+
 }

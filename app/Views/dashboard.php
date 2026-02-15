@@ -1,34 +1,40 @@
-<h1>Dashboard</h1>
+<?php if (isset($_SESSION['flash_success'])): ?>
+    <div class="alert success">
+        <?= htmlspecialchars($_SESSION['flash_success']) ?>
+    </div>
+    <?php unset($_SESSION['flash_success']); ?>
+<?php endif; ?>
 
-<?php foreach ($dashboardData as $data): ?>
+<?php if (isset($_SESSION['flash_error'])): ?>
+    <div class="alert error">
+        <?= htmlspecialchars($_SESSION['flash_error']) ?>
+    </div>
+    <?php unset($_SESSION['flash_error']); ?>
+<?php endif; ?>
 
-    <h2>Account type: <?= htmlspecialchars($data['type']) ?></h2>
+<form method="POST" action="/">
+    <input type="hidden" name="action" value="transfer">
 
-    <?php if (!empty($data['errorMessage'])): ?>
-        <p><?= htmlspecialchars($data['errorMessage']) ?></p>
-    <?php endif; ?>
-
-    <p>Balance: <?= number_format($data['balance'], 2) ?> €</p>
-
-    <p>Total Positive: <?= number_format($data['totalPositive'], 2) ?> €</p>
-    <p>Total Negative: <?= number_format($data['totalNegative'], 2) ?> €</p>
-
-    <table border="1">
-        <tr>
-            <th>Date</th>
-            <th>Description</th>
-            <th>Amount</th>
-        </tr>
-
-        <?php foreach ($data['operations'] as $op): ?>
-            <tr>
-                <td><?= htmlspecialchars($op['date']) ?></td>
-                <td><?= htmlspecialchars($op['description']) ?></td>
-                <td><?= number_format($op['amount'], 2) ?> €</td>
-            </tr>
+    <label for="source_account_id">Source account</label>
+    <select name="source_account_id" required>
+        <?php foreach ($accounts as $account): ?>
+            <option value="<?= $account->getId() ?>">
+                <?= $account->getType() ?> — <?= $account->getBalance() ?> €
+            </option>
         <?php endforeach; ?>
-    </table>
+    </select>
 
-    <hr>
+    <label for="target_account_id">Target account</label>
+    <select name="target_account_id" required>
+        <?php foreach ($accounts as $account): ?>
+            <option value="<?= $account->getId() ?>">
+                <?= $account->getType() ?> — <?= $account->getBalance() ?> €
+            </option>
+        <?php endforeach; ?>
+    </select>
 
-<?php endforeach; ?>
+    <label for="amount">Amount</label>
+    <input type="number" name="amount" step="0.01" min="0.01" required>
+
+    <button type="submit">Transfer</button>
+</form>
