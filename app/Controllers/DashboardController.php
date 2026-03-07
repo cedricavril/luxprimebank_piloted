@@ -11,12 +11,11 @@ class DashboardController
 {
     public function index()
     {
-
-
         // Create a dummy authenticated user (temporary, no session yet)
         $user = new User(
             1,
             'john.doe@test.com',
+            password_hash('secret', PASSWORD_DEFAULT),
             'John',
             'Doe',
             'USER'

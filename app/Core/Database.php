@@ -6,8 +6,8 @@ class Database
 
     public static function getConnection(): PDO
     {
+        $env = getenv('APP_ENV') ?: 'prod';
         if (self::$pdo === null) {
-            $env = getenv('APP_ENV') ?: 'prod';
             $dbName = ($env === 'test') ? 'luxprime_test' : 'luxprime';
 
             try {

@@ -2,9 +2,9 @@
 
 use PHPUnit\Framework\TestCase;
 
-/*require_once __DIR__ . '/../app/Models/Account.php';
+require_once __DIR__ . '/../app/Models/Account.php';
 require_once __DIR__ . '/../app/Models/User.php';
-*/
+
 class UserTest extends TestCase
 {
     protected function tearDown(): void
@@ -14,9 +14,13 @@ class UserTest extends TestCase
 
     public function testUserReturnsAccountsFromDatabase(): void
     {
+
+
+
         $user = new User(
             1,
             'john.doe@test.com',
+            password_hash('secret', PASSWORD_DEFAULT),
             'John',
             'Doe',
             'USER'

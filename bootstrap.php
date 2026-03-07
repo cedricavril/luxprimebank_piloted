@@ -14,4 +14,6 @@ require_once __DIR__ . '/app/Models/TransferHistory.php';
 
 require_once __DIR__ . '/app/Repositories/AccountRepository.php';
 
+require_once __DIR__ . '/app/Services/AuthService.php';
+
 require_once __DIR__ . '/app/Controllers/DashboardController.php';
