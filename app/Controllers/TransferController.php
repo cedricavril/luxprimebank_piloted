@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Controllers;
+/*namespace App\Controllers;
 
 use App\Services\TransferService;
 use InvalidArgumentException;
+*/
 
 class TransferController
 {

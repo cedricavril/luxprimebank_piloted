@@ -1,4 +1,6 @@
 <?php
+// fonctionne sans ce ficher en test, donc yagni a priori. à virer dès que tout marche en test et en prod.
+
 putenv('APP_ENV=test');
 
 // Include the Controller directly, avoiding public/index.php

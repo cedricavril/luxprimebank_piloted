@@ -1,7 +1,5 @@
 <?php
 
-/*require_once __DIR__ . '/../Repositories/AccountRepository.php';*/
-
 class User
 {
     private int $id_user;

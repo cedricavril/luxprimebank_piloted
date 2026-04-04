@@ -1,14 +1,5 @@
 <?php
-
-// LOAD all required classes manually
-/*require_once __DIR__ . '/bootstrap_dashboard.php';*/
-require_once __DIR__ . '/bootstrap_auth_test.php';
-
-$_SERVER['REQUEST_URI'] = '/dashboard';
-
 use PHPUnit\Framework\TestCase;
-/*use App\Services\AuthService;
-use App\Models\User;*/
 
 /**
  * Authentication service tests.
@@ -16,11 +7,24 @@ use App\Models\User;*/
  */
 class AuthServiceTest extends TestCase
 {
+    protected Container $container;
+
+    protected function setUp(): void
+    {
+/* continuer ici, normalement le require renvoie l'objet mais plus un int égal à 1. */
+/* FT projet en cours : CTRL+F ---- intermission ---- dans le chat gpt actuel pour trouver où continuer pour le projet banquebroute*/
+echo "DEBUG: int ?  = " . var_export(require __DIR__ . '/../bootstrap.php', true) . PHP_EOL;
+        $this->container = require __DIR__ . '/bootstrap.php';
+    }
+
+
     public function testLoginSucceedsWithValidCredentials(): void
     {
         $session = new FakeSessionManager();
         $repository = new FakeUserRepository();
         $authService = new AuthService($repository, $session);
+
+        $authService = $this->container->get('AuthService');
 
         $result = $authService->login('user@test.com', 'secret');
 

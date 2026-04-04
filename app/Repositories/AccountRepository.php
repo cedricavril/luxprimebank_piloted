@@ -2,9 +2,6 @@
 
 use App\Models\User;
 
-require_once __DIR__ . '/../Core/Database.php';
-require_once __DIR__ . '/../Models/Account.php';
-
 class AccountRepository
 {
     public function findByUserId(int $userId): array

@@ -2,10 +2,10 @@
 /*namespace App\Controllers;*/
 
 /*require_once __DIR__ . '/../Core/Controller.php';*/
-require_once __DIR__ . '/../Models/Account.php';
+/*require_once __DIR__ . '/../Models/Account.php';
 require_once __DIR__ . '/../Models/Operation.php';
 require_once __DIR__ . '/../Models/User.php';
-
+*/
 /*class DashboardController extends Controller*/
 class DashboardController
 {
@@ -69,7 +69,9 @@ class DashboardController
     {
 if (!isset($_SESSION['user_id'])) {
     http_response_code(403);
-    echo 'Access denied';
+    echo 'Access denied'; // temporaire ci dessous
+        require __DIR__ . '/../../../ft_project/index.php';
+
     return;
 }
         $accounts = $user->getAccounts();

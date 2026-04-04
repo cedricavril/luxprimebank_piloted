@@ -2,15 +2,6 @@
 
 declare(strict_types=1);
 
-/*namespace App\Core;*/
-
-/*use App\Controllers\TransferController;
-use App\Controllers\DashboardController;
-use App\Services\TransferService;
-use App\Repositories\AccountRepository;
-*/
-
-
 class Router
 {
     public function dispatch(): void

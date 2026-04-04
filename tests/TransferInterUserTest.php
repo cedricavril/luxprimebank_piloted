@@ -2,11 +2,6 @@
 
 use PHPUnit\Framework\TestCase;
 
-/*use App\Models\Account;
-use App\Models\Transfer;
-use App\Models\TransferHistory;
-use App\Repositories\AccountRepository;
-*/
 class TransferInterUserTest extends TestCase
 {
     protected function setUp(): void
